@@ -1,7 +1,7 @@
 #include "MPU9250.h"
 
 // an MPU9250 object with the MPU-9250 sensor on SPI bus 0 and chip select pin 10
-MPU9250FIFO IMU(SPI,5);
+MPU9250FIFO IMU(SPI,10);
 //MPU9250FIFO IMU(Wire,0x68);
 
 int status;
