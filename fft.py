@@ -1,24 +1,29 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-path = "STM_2021-07-19_N_S100_L25_Acc8_BW184_1158Hz.npy"
+# path = "STM_2021-07-19_N_S100_L25_Acc8_BW184_1158Hz.npy"
+path = "data.txt"
 F = 952
 
-# quantity = 1  # How many k data you want `60` is about 10 min  
+"""
+    # quantity = 1  # How many k data you want `60` is about 10 min  
 
-# load_data = np.load("./{}/data0.npy".format(path))
-# print(load_data)
-# for i in range (quantity):
-#     data_read = np.load("./{}/data{}.npy".format(path,i))
-#     # data_read = np.load("./test_3_1/data" + str(i) + ".npy")
-#     load_data = np.vstack([load_data,data_read])
+    # load_data = np.load("./{}/data0.npy".format(path))
+    # print(load_data)
+    # for i in range (quantity):
+    #     data_read = np.load("./{}/data{}.npy".format(path,i))
+    #     # data_read = np.load("./test_3_1/data" + str(i) + ".npy")
+    #     load_data = np.vstack([load_data,data_read])
 
-# data = load_data
+    # data = load_data
 
-# np.save("./{}_{}Hz".format(path,frequency),load_data)
+    # np.save("./{}_{}Hz".format(path,frequency),load_data)
 
-data = np.load("./{}".format(path))
-# data = np.load("{}.npy".format(path))
+"""
+
+data= np.loadtxt("./{}".format(path),delimiter=',')
+
+# data = np.load("./{}".format(path))
 
 print(np.mean(data,axis=0))
 # 0.01031709   0.4881932  -10.27560595

@@ -5,6 +5,7 @@ import datetime
 
 
 uri="ws://localhost:8765"
+uri = "ws://192.168.0.129:80"
 time1 = int(datetime.datetime.utcnow().timestamp())
 
 
@@ -16,8 +17,8 @@ async def hello(uri):
             i=0
             while True:
                 try:
-                    # recv_text = await websocket.recv()
-                    recv_text = websocket.recv()
+                    recv_text = await websocket.recv()
+                    # recv_text = websocket.recv()
                     # print(recv_text)
                     print("{}> {}".format(i,recv_text))
                     i+=1
