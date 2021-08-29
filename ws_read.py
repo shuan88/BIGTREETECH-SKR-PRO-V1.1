@@ -4,8 +4,9 @@ import numpy as np
 import datetime
 
 
-uri="ws://localhost:8765"
-uri = "ws://192.168.0.129:80"
+# uri="ws://localhost:8765"
+# uri = "ws://192.168.0.129:80"
+uri = "ws://192.168.50.65:80"
 time1 = int(datetime.datetime.utcnow().timestamp())
 
 

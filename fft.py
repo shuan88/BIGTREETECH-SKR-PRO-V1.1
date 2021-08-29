@@ -2,8 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # path = "STM_2021-07-19_N_S100_L25_Acc8_BW184_1158Hz.npy"
-path = "data.txt"
-F = 952
+path = "August09_16_39_24/data200.txt"
+
+F = 1000
 
 """
     # quantity = 1  # How many k data you want `60` is about 10 min  
@@ -21,7 +22,12 @@ F = 952
 
 """
 
+# data= np.loadtxt("./{}".format(path),delimiter=',')
+
 data= np.loadtxt("./{}".format(path),delimiter=',')
+# sensor1_ML_data_rms1 = np.array(np.sqrt(np.mean(sensor1_ML_data1**2, axis=1)))
+data = np.array(np.sqrt(np.mean(data**2, axis=1)))
+# /Volumes/Untitled\ 1/August09_16_39_24
 
 # data = np.load("./{}".format(path))
 
