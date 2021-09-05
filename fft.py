@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-path = "2021-09-02_N_S50_L0_946Hz.npy"
+path = "txt2npSeptember02_19_29_43_1000Hz.npy"
 # path = "August09_16_39_24/data200.txt"
 
 F = 1000
