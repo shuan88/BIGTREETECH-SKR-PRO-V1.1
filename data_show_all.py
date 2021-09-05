@@ -76,6 +76,7 @@ else:
     print("{} is existed ".format(data_input_dir))
 
 data = np.load(data_input_dir)
+print(data.shape[:])
+# plt.plot(data)
+# plt.show()
 
-plt.plot(data)
-plt.show()

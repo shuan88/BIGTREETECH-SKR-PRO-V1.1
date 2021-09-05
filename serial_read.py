@@ -29,17 +29,17 @@ asyncio.get_event_loop().run_until_complete(start_server)
     ser = pyserial.Serial('/dev/tty.usbmodem14201',500000) """
 
 # COM_PORT = '/dev/tty.usbmodem14101'    # port name
-COM_PORT = '/dev/tty.usbmodem14103'    # port name
+COM_PORT = '/dev/tty.usbmodem14203'    # port name
 # COM_PORT = '/dev/cu.usbserial-0001'    # port name
 # COM_PORT = 'COM5' # for windows USE "COM[number]"
 
-BAUD_RATES = 500000    # SET BAUD_RATES 115200,250000,500000,1000000
+BAUD_RATES = 250000    # SET BAUD_RATES 115200,250000,500000,1000000
 ser = serial.Serial(COM_PORT, BAUD_RATES)   # init Serial settings
 
-quantity = 3  # How many k data you want `60` is about 10 min  
+quantity = 10  # How many k data you want `60` is about 10 min  
 data_size = 10000 # How many data size per saved file Recomand use 10000
 
-path = "{}_N_S50_L0_Acc8_BW184" .format(datetime.date.today())
+path = "{}_N_S50_L0" .format(datetime.date.today())
 # path = "{}_null" .format(datetime.date.today())
 """ 命名方式
     N：狀態，總共有四種(N=>正常馬達、RU=>轉子不平衡、RB=>轉子斷條、SS=>定子短路)
@@ -134,15 +134,16 @@ for i in range (1, quantity-1):
     load_data = np.vstack([load_data,data_read])
 
 np.save("./{}_{}Hz".format(path,frequency),load_data)
-load_data[:,1] += 0.4881932
-load_data[:,2] += 10.27560595
+# load_data[:,1] += 0.4881932
+# load_data[:,2] += 10.27560595
 
 N = len(load_data) 
 F = final_frequency
 freq = np.fft.rfftfreq(N,d=F**-1)
 for i in range(3):
     plt.subplot(3, 3, i+1)
-    sp = np.fft.rfft(load_data[:,i],norm="forward")
+    sp = np.fft.rfft(load_data[:,i])
+    # sp = np.fft.rfft(load_data[:,i],norm="forward")
     ymax = np.argmax(sp)
     # print(sp.shape[:])
     print ("data {} max:{}".format(i,ymax))
@@ -150,7 +151,7 @@ for i in range(3):
     plt.subplot(3, 3, i+4)
     plt.plot( load_data[:,i])
     plt.subplot(3, 3, i+7)
-    plt.plot( load_data[0:100,i])
+    plt.plot( load_data[0:300,i])
 
 plt.savefig("./{}_{}Hz.png".format(path,frequency))
 plt.show()
