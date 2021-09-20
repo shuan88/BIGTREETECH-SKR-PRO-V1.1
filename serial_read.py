@@ -7,7 +7,6 @@ import numpy as np
 # import pandas as pd 
 import os, sys
 import matplotlib.pyplot as plt
-
 """import asyncio
     import websockets
 
@@ -37,7 +36,7 @@ COM_PORT = '/dev/tty.usbmodem14203'    # port name
 BAUD_RATES = 500000    # SET BAUD_RATES 115200,250000,500000,1000000
 ser = serial.Serial(COM_PORT, BAUD_RATES)   # init Serial settings
 
-quantity = 2  # How many k data you want `60` is about 10 min  
+quantity = 3  # How many k data you want `60` is about 10 min  
 data_size = 10000 # How many data size per saved file Recomand use 10000
 
 path = "{}_N_S50_L0" .format(datetime.date.today())
@@ -61,14 +60,14 @@ path = "{}_N_S50_L0" .format(datetime.date.today())
 IncommingNum = ser.readline()
 i = 0
 
-if os.path.isdir("./{}".format(path)):
+if os.path.isdir("../mpu9250_SreialRead/{}".format(path)):
     path_temp = path
-    while os.path.isdir("./{}".format(path_temp)):
+    while os.path.isdir("../mpu9250_SreialRead/{}".format(path_temp)):
         i+=1
         path_temp = str(path+ "_"+str(i))
         print(path_temp)
     path = path_temp
-os.mkdir("./{}".format(path))
+os.mkdir("../mpu9250_SreialRead/{}".format(path))
 
 final_frequency = 0
 
@@ -113,7 +112,7 @@ for i in range(quantity):
     final_frequency += frequency
     # arr_size = np.int16((new_array.shape[0])/3)
     # np.save("./{}/data{}".format(path,i), (np.reshape(new_array, (arr_size,3))))
-    np.save("./{}/data{}".format(path,i), (np.reshape(new_array, (data_size,3))))
+    np.save("../mpu9250_SreialRead/{}/data{}".format(path,i), (np.reshape(new_array, (data_size,3))))
     # pd.DataFrame(new_array).to_csv("./file_org.csv")
     print("time cost :" ,  str(data_time) ) # show time cost
     # print(arr_size)
@@ -127,14 +126,15 @@ for i in range(quantity):
 final_frequency = final_frequency / quantity
 print("avg f = {}".format(final_frequency))
 
-load_data = np.load("./{}/data0.npy".format(path))
+# load_data = np.load("./{}/data0.npy".format(path))
+load_data = np.load("../mpu9250_SreialRead/{}/data0.npy".format(path))
 print(load_data)
 for i in range (1, quantity-1):
-    data_read = np.load("./{}/data{}.npy".format(path,i))
+    data_read = np.load("../mpu9250_SreialRead/{}/data{}.npy".format(path,i))
     # data_read = np.load("./test_3_1/data" + str(i) + ".npy")
     load_data = np.vstack([load_data,data_read])
 
-np.save("./{}_{}Hz".format(path,frequency),load_data)
+np.save("../mpu9250_SreialRead/{}_{}Hz".format(path,frequency),load_data)
 # load_data[:,1] += 0.4881932
 # load_data[:,2] += 10.27560595
 
@@ -148,13 +148,14 @@ for i in range(3):
     ymax = np.argmax(sp)
     # print(sp.shape[:])
     print ("data {} max:{}".format(i,ymax))
-    plt.plot( freq , np.abs(sp))
+    # plt.plot( freq , np.abs(sp))
+    plt.plot( freq[1:-1] , np.abs(sp[1:-1]))
     plt.subplot(3, 3, i+4)
     plt.plot( load_data[:,i])
     plt.subplot(3, 3, i+7)
-    plt.plot( load_data[0:300,i])
+    plt.plot( load_data[0:100,i])
 
-plt.savefig("./{}_{}Hz.png".format(path,frequency))
+plt.savefig("../mpu9250_SreialRead/{}_{}Hz.png".format(path,frequency))
 plt.show()
 
 """ MongoDB
