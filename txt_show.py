@@ -7,7 +7,8 @@ import seaborn as sns
 from scipy import signal
 from sklearn.preprocessing import MinMaxScaler
 
-mypath = "/Volumes/mac/August09_16_39_24/"
+# mypath = "/Volumes/mac/August09_16_39_24/"
+mypath = "/Volumes/SD/S0"
 files = listdir(mypath)
 fulllpath  = []
 
@@ -34,8 +35,9 @@ for i in range(1,len(fulllpath)-1):
     data_read = np.loadtxt("{}/data{}.txt".format(mypath,i),delimiter=',')
     load_data = np.vstack([load_data,data_read])
     
-np.save("./August09_16_39_24_1050Hz".format() ,load_data)
+# np.save("./August09_16_39_24_1050Hz".format() ,load_data)
 # np.save("./data/{}_{}Hz".format(f,1050),load_data)
+
 freq = 10000
 
 N = len(load_data) #1040105
@@ -48,7 +50,9 @@ for i in range(3):
     # print(sp.shape[:])
     # print(np.fft.rfftfreq(data.shape[0] , d=1./N))
     # print ("data {} max:{}".format(i,ymax))
-    plt.plot( load_data[1:-1] , np.abs(sp[1:-1]))
+    # plt.plot( load_data[1:-1] , np.abs(sp[1:-1]))
+    plt.plot( freq[1:-1] , np.abs(sp[1:-1]))
+
     # plt.xlim([1, 100])
     plt.subplot(3, 3, i+4)
     plt.plot( load_data[:,i])
