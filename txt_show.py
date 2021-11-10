@@ -8,8 +8,8 @@ from scipy import signal
 from sklearn.preprocessing import MinMaxScaler
 
 # mypath = "/Volumes/mac/August09_16_39_24/"
-# mypath = "/Volumes/SD/S4"
-mypath = "/Volumes/Untitled/S79"
+mypath = "/Volumes/SD/Sensor_data11"
+# mypath = "/Volumes/Untitled/S79"
 files = listdir(mypath)
 fulllpath  = []
 
