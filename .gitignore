@@ -2,3 +2,4 @@ data/*.npy
 data/*
 ppt/
 ims/*
+img/*
