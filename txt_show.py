@@ -8,7 +8,7 @@ from scipy import signal
 from sklearn.preprocessing import MinMaxScaler
 
 # mypath = "/Volumes/mac/August09_16_39_24/"
-mypath = "/Volumes/SD/Sensor_data5"
+mypath = "/Volumes/SD/Sensor_data10"
 # mypath = "/Volumes/Untitled/S79"
 files = listdir(mypath)
 fulllpath  = []
@@ -42,7 +42,7 @@ for i in range(1,len(fulllpath)-1):
 # np.save("./August09_16_39_24_1050Hz".format() ,load_data)
 # np.save("./data/{}_{}Hz".format(f,1050),load_data)
 
-freq = 10000
+freq = 6300
 
 N = len(load_data) #1040105
 freq = np.fft.rfftfreq(N,d=freq**-1)
