@@ -7,6 +7,8 @@ import seaborn as sns
 from scipy import signal
 from sklearn.preprocessing import MinMaxScaler
 
+
+
 mypath = "/Volumes/Untitled 1/September02_19_29_43"
 files = listdir(mypath)
 fulllpath  = []

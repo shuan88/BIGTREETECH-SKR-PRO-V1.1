@@ -8,7 +8,7 @@ from scipy import signal
 from sklearn.preprocessing import MinMaxScaler
 
 # mypath = "/Volumes/mac/August09_16_39_24/"
-mypath = "/Volumes/SD/Sensor_data11"
+mypath = "/Volumes/SD/Sensor_data5"
 # mypath = "/Volumes/Untitled/S79"
 files = listdir(mypath)
 fulllpath  = []
@@ -32,10 +32,13 @@ print(len(fulllpath))
 
 load_data= np.loadtxt("{}/data0.txt".format(mypath),delimiter=',')
 
+# for i in range(1,9):
 for i in range(1,len(fulllpath)-1):
-    data_read = np.loadtxt("{}/data{}.txt".format(mypath,i),delimiter=',')
-    load_data = np.vstack([load_data,data_read])
-    
+    try:
+        data_read = np.loadtxt("{}/data{}.txt".format(mypath,i),delimiter=',')
+        load_data = np.vstack([load_data,data_read])
+    except:
+        print("failed txt data: {}".format(i))
 # np.save("./August09_16_39_24_1050Hz".format() ,load_data)
 # np.save("./data/{}_{}Hz".format(f,1050),load_data)
 
